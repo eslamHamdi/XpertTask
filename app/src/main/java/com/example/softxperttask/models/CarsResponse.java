@@ -1,9 +1,11 @@
 package com.example.softxperttask.models;
 
 import com.squareup.moshi.Json;
+import com.squareup.moshi.JsonClass;
 
 import java.util.List;
 
+@JsonClass(generateAdapter = true)
 public class CarsResponse{
 
 	@Json(name = "data")

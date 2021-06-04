@@ -1,8 +1,5 @@
 package com.example.softxperttask.api;
 
-import android.content.Context;
-
-import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import retrofit2.Retrofit;
@@ -12,12 +9,12 @@ public class CarsClient {
 
     private static final String BASE_URL = "http://demo1585915.mockable.io/api/v1/";
 
-      static Moshi moshi = new Moshi.Builder().add(JsonAdapter.Factory.class).build();
+      static Moshi moshi = new Moshi.Builder().build();
 
 
 
 
-    public static Retrofit getInstance(Context context)
+    public static Retrofit getInstance()
     {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
