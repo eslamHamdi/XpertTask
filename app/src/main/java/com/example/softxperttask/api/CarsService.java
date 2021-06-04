@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 
 public interface CarsService {
 
-    @GET("api/v1/cars")
+    @GET(value = "cars")
     public Call<CarsResponse> getCarList(@Query("page") int pageNumber);
 }

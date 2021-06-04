@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setLifecycleOwner(this);
         DiffUtil.ItemCallback<DataItem> DiffCallBack = new DiffUtil.ItemCallback<DataItem>() {
             @Override
             public boolean areItemsTheSame(@NonNull @NotNull DataItem oldItem, @NonNull @NotNull DataItem newItem) {
@@ -43,15 +45,16 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
-        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
-        viewModel.getCarsList();
-
         RecyclerView recyclerView = binding.recycler;
         adapter = new CarsAdapter(DiffCallBack);
         recyclerView.setAdapter(adapter);
+
+        viewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(MainActivityViewModel.class);
+
+
+        viewModel.getCarsList();
+
+
 
         viewModel.carsData.observe(this, new Observer<List<DataItem>>() {
             @Override

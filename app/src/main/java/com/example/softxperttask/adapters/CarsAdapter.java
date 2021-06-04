@@ -23,14 +23,12 @@ public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder
         super(diffCallback);
     }
 
-    public static class CarsViewHolder extends RecyclerView.ViewHolder
-    {
-        CarItemBinding binding;
+    @Override
+    public void onBindViewHolder(@NonNull @NotNull CarsAdapter.CarsViewHolder holder, int position) {
 
-        public CarsViewHolder(@NonNull @NotNull CarItemBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-        }
+        DataItem item = this.getItem(position);
+        binding.setCarItem(item);
+        binding.executePendingBindings();
     }
 
 
@@ -42,12 +40,15 @@ public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder
         return new CarsViewHolder(binding);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull @NotNull CarsAdapter.CarsViewHolder holder, int position) {
+    public static class CarsViewHolder extends RecyclerView.ViewHolder
+    {
+        public CarsViewHolder(@NonNull @NotNull CarItemBinding binding) {
+            super(binding.getRoot());
+            //this.binding = binding;
+        }
 
-        DataItem item = this.getItem(position);
-        holder.binding.setCarItem(item);
-        holder.binding.executePendingBindings();
+
+
     }
 
 
