@@ -1,43 +1,52 @@
 package com.example.softxperttask.adapters;
 
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.softxperttask.R;
 import com.example.softxperttask.databinding.CarItemBinding;
 import com.example.softxperttask.models.DataItem;
 
-public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter> {
+import org.jetbrains.annotations.NotNull;
+
+public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder> {
 
     CarItemBinding binding;
-    public Class CarsViewHolder extends View
+
+    protected CarsAdapter(@NonNull @NotNull DiffUtil.ItemCallback<DataItem> diffCallback) {
+        super(diffCallback);
+    }
+
+    public static class CarsViewHolder extends RecyclerView.ViewHolder
     {
 
 
-
+        public CarsViewHolder(@NonNull @NotNull CarItemBinding binding) {
+            super(binding.getRoot());
+        }
     }
 
-    public CarsAdapter(@NonNull @org.jetbrains.annotations.NotNull DiffUtil.ItemCallback<DataItem> diffCallback, CarItemBinding binding, Class carsViewHolder) {
-        super(diffCallback);
-        this.binding = binding;
-        CarsViewHolder = carsViewHolder;
-    }
 
 
     @NonNull
-    @org.jetbrains.annotations.NotNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull @org.jetbrains.annotations.NotNull ViewGroup parent, int viewType) {
-        return null;
+    public CarsViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.car_item,parent,false);
+        return new CarsViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull CarsAdapter holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull CarsAdapter.CarsViewHolder holder, int position) {
 
     }
+
+
 
 
     public CarItemBinding getBinding() {
