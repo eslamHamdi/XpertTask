@@ -49,6 +49,7 @@ public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder
 
         DataItem item = this.getItem(position);
         holder.binding.setCarItem(item);
+        holder.binding.executePendingBindings();
     }
 
     public static class DiffCallBack extends DiffUtil.ItemCallback<DataItem>
