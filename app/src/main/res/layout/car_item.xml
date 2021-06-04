@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="carItem"
+            type="com.example.softxperttask.models.DataItem" />
 
     </data>
 

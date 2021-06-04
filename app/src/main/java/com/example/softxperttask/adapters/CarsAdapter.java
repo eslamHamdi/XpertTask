@@ -15,6 +15,8 @@ import com.example.softxperttask.models.DataItem;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder> {
 
     CarItemBinding binding;
@@ -25,10 +27,11 @@ public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder
 
     public static class CarsViewHolder extends RecyclerView.ViewHolder
     {
-
+        CarItemBinding binding;
 
         public CarsViewHolder(@NonNull @NotNull CarItemBinding binding) {
             super(binding.getRoot());
+            this.binding = binding;
         }
     }
 
@@ -44,16 +47,26 @@ public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder
     @Override
     public void onBindViewHolder(@NonNull @NotNull CarsAdapter.CarsViewHolder holder, int position) {
 
+        DataItem item = this.getItem(position);
+        holder.binding.setCarItem(item);
+    }
+
+    public static class DiffCallBack extends DiffUtil.ItemCallback<DataItem>
+    {
+
+        @Override
+        public boolean areItemsTheSame(@NonNull @NotNull DataItem oldItem, @NonNull @NotNull DataItem newItem) {
+            return oldItem.getImageUrl().equals(newItem.getImageUrl());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull @NotNull DataItem oldItem, @NonNull @NotNull DataItem newItem) {
+            return Objects.equals(oldItem, newItem);
+        }
     }
 
 
 
 
-    public CarItemBinding getBinding() {
-        return binding;
-    }
 
-    public CarItemBinding setBinding() {
-        return binding;
-    }
 }
