@@ -15,13 +15,11 @@ import com.example.softxperttask.models.DataItem;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder> {
 
     CarItemBinding binding;
 
-    protected CarsAdapter(@NonNull @NotNull DiffUtil.ItemCallback<DataItem> diffCallback) {
+    public CarsAdapter(@NonNull @NotNull DiffUtil.ItemCallback<DataItem> diffCallback) {
         super(diffCallback);
     }
 
@@ -51,21 +49,6 @@ public class CarsAdapter extends ListAdapter<DataItem,CarsAdapter.CarsViewHolder
         holder.binding.setCarItem(item);
         holder.binding.executePendingBindings();
     }
-
-    public static class DiffCallBack extends DiffUtil.ItemCallback<DataItem>
-    {
-
-        @Override
-        public boolean areItemsTheSame(@NonNull @NotNull DataItem oldItem, @NonNull @NotNull DataItem newItem) {
-            return oldItem.getImageUrl().equals(newItem.getImageUrl());
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull @NotNull DataItem oldItem, @NonNull @NotNull DataItem newItem) {
-            return Objects.equals(oldItem, newItem);
-        }
-    }
-
 
 
 

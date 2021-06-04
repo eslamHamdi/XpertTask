@@ -34,12 +34,13 @@ public class MainActivityViewModel extends AndroidViewModel {
     {
         CarsService service = CarsClient.getInstance().create(CarsService.class);
 
-        service.getCarList(1).enqueue(new Callback<CarsResponse>() {
+        service.getCarList(2).enqueue(new Callback<CarsResponse>() {
             @Override
             public void onResponse(Call<CarsResponse> call, Response<CarsResponse> response) {
 
                 try
                 {
+                    assert response.body() != null;
                     List<DataItem> list = response.body().getData();
                 }catch (Exception e)
                 {

@@ -7,8 +7,8 @@ public class DataItem{
 	@Json(name = "imageUrl")
 	private String imageUrl;
 
-//	@Json(name = "id")
-//	private int id;
+	@Json(name = "id")
+	private int id;
 
 	@Json(name = "constractionYear")
 	private String constractionYear;
@@ -27,13 +27,13 @@ public class DataItem{
 		return imageUrl;
 	}
 
-//	public void setId(int id){
-//		this.id = id;
-//	}
-//
-//	public int getId(){
-//		return id;
-//	}
+	public int getId(){
+		return id;
+	}
+
+	public void setId(int id){
+		this.id = id;
+	}
 
 	public void setConstractionYear(String constractionYear){
 		this.constractionYear = constractionYear;
