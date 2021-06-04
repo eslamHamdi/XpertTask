@@ -32,28 +32,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:scaleType="centerCrop"
-                android:adjustViewBounds="true"/>
+                android:adjustViewBounds="true"
+                showImage="@{carItem.imageUrl}"/>
 
             <TextView
                 android:id="@+id/brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/car_image"/>
+                app:layout_constraintTop_toBottomOf="@id/car_image"
+                android:text="@{carItem.brand}"/>
 
             <TextView
                 android:id="@+id/used"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/brand"/>
+                app:layout_constraintTop_toBottomOf="@id/brand"
+                carStatus="@{carItem.isUsed}"
+                />
 
             <TextView
                 android:id="@+id/year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/used"/>
+                app:layout_constraintTop_toBottomOf="@id/used"
+                android:text="@{carItem.constractionYear}"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

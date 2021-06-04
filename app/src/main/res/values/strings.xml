@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SoftXpertTask</string>
+    <string name="newCar">New</string>
+    <string name="usedCar">Used</string>
 </resources>
