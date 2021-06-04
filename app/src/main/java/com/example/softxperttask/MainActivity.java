@@ -9,11 +9,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.softxperttask.adapters.CarsAdapter;
 import com.example.softxperttask.databinding.ActivityMainBinding;
 import com.example.softxperttask.models.DataItem;
+import com.example.softxperttask.utils.EndlessRecycler;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     CarsAdapter adapter;
     ActivityMainBinding binding;
     MainActivityViewModel viewModel;
+    private EndlessRecycler scrollListener;
 
 
     @Override
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider.AndroidViewModelFactory(this.getApplication()).create(MainActivityViewModel.class);
 
 
-        viewModel.getCarsList();
+        viewModel.getCarsList(1);
 
 
 
@@ -71,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager)recyclerView.getLayoutManager();
+        scrollListener = new EndlessRecycler(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+
+                viewModel.getCarsList(page);
+            }
+        };
+
+        recyclerView.addOnScrollListener(scrollListener);
 
     }
 

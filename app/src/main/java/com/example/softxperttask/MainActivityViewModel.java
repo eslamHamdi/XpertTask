@@ -30,11 +30,11 @@ public class MainActivityViewModel extends AndroidViewModel {
     MutableLiveData<String> errorMsg = new MutableLiveData<String>();
 
 
-    void getCarsList()
+    void getCarsList(int page)
     {
         CarsService service = CarsClient.getInstance().create(CarsService.class);
 
-        service.getCarList(1).enqueue(new Callback<CarsResponse>() {
+        service.getCarList(page).enqueue(new Callback<CarsResponse>() {
             @Override
             public void onResponse(@NotNull Call<CarsResponse> call, @NotNull Response<CarsResponse> response) {
 
