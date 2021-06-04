@@ -4,10 +4,10 @@ import com.example.softxperttask.models.CarsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface CarsService {
 
-    @GET("cars?page={page}")
-    public Call<CarsResponse> getCarList(@Path("page") int page);
+    @GET("cars")
+    public Call<CarsResponse> getCarList(@Query("page") int page);
 }
